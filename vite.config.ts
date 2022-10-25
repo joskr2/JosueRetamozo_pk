@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 
 const vitestConfig: VitestUserConfigInterface = {
   test: {
-    // vitest config, with helpful vitest typing :)
+   environment:"happy-dom"
   }
 };
 
