@@ -20,7 +20,7 @@
   width: 25vw;
   height: 82vh;
   margin: 1rem;
-  margin-top: 5rem;
+  margin-top: 6rem;
 }
 .card__text{
   text-align: center;
@@ -34,4 +34,11 @@ a{
   text-decoration: none;
   color: black;
   width: fit-content;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .infocard {
+    width: fit-content;
+  }
 }
