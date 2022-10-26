@@ -19,6 +19,16 @@ const Main: FC<IMain> = ({ usePokemons }) => {
     setSearch(target.value);
   }
 
+  const nextPage = () => {
+    if (pokemons.filter(poke => poke.name.includes(search)).length > currentPage + 4)
+      setCurrentPage(currentPage + 4);
+  }
+
+  const prevPage = () => {
+    if (currentPage > 0)
+      setCurrentPage(currentPage - 4);
+  }
+
   return (
     <section>
       <div className="containers">
@@ -27,10 +37,9 @@ const Main: FC<IMain> = ({ usePokemons }) => {
             onChange={onSearchChange} />
           <div className="listCards__container">
             {
-              filteredPokemons(search, pokemons, currentPage).map((pokemon: Pokemon) => (
-                <>
-                  <ListCard source={`${pokemon.pic}`} number={pokemon.id} name={pokemon.name} href="/" bgColorIndex="#8FD8CE" selectCurrentPokemon={pokemon} />
-                </>
+              filteredPokemons(search, pokemons, currentPage).map((pokemon: Pokemon,i:number) => (    
+                  <ListCard key={i} source={`${pokemon.pic}`} number={pokemon.id} name={pokemon.name} href="/" bgColorIndex="#8FD8CE" selectCurrentPokemon={pokemon} />
+                
               ))
             }
 
@@ -44,10 +53,10 @@ const Main: FC<IMain> = ({ usePokemons }) => {
         </div>
       </div>
       <footer >
-        <button role="button" >
+        <button role="button" onClick={prevPage} >
           &lt;&#32; Atras
         </button>
-        <button role="button"  >
+        <button role="button" onClick={nextPage} >
           Siguiente &#32; &gt;
         </button>
       </footer>
