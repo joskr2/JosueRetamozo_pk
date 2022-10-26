@@ -40,7 +40,7 @@ const Main: FC<IMain> = ({ usePokemons }) => {
             {
               filteredPokemons(search, pokemons, currentPage).map((pokemon: Pokemon, i: number) => (
                 <div key={i} onClick={() => { setCurrentPokemon(pokemon) }}>
-                  <ListCard source={`${pokemon.pic}`} number={pokemon.id} name={pokemon.name} bgColorIndex="#8FD8CE" selectCurrentPokemon={pokemon} />
+                  <ListCard source={`${pokemon.pic}`} number={pokemon.id} name={pokemon.name} bgColorIndex="#8FD8CE" />
                 </div>
               ))
             }
