@@ -13,6 +13,7 @@ const Main: FC<IMain> = ({ usePokemons }) => {
   const { isLoading, pokemons } = usePokemons();
   const [currentPage, setCurrentPage] = useState(0)
   const [search, setSearch] = useState('');
+  const [currentPokemon, setCurrentPokemon] = useState<Pokemon>({ id: "", name: "", pic: "" })
 
   const onSearchChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
     setCurrentPage(0);
@@ -37,9 +38,10 @@ const Main: FC<IMain> = ({ usePokemons }) => {
             onChange={onSearchChange} />
           <div className="listCards__container">
             {
-              filteredPokemons(search, pokemons, currentPage).map((pokemon: Pokemon,i:number) => (    
-                  <ListCard key={i} source={`${pokemon.pic}`} number={pokemon.id} name={pokemon.name} href="/" bgColorIndex="#8FD8CE" selectCurrentPokemon={pokemon} />
-                
+              filteredPokemons(search, pokemons, currentPage).map((pokemon: Pokemon, i: number) => (
+                <div key={i} onClick={() => { setCurrentPokemon(pokemon) }}>
+                  <ListCard source={`${pokemon.pic}`} number={pokemon.id} name={pokemon.name} bgColorIndex="#8FD8CE" selectCurrentPokemon={pokemon} />
+                </div>
               ))
             }
 
@@ -49,7 +51,7 @@ const Main: FC<IMain> = ({ usePokemons }) => {
           }
         </div>
         <div className="detailContainer">
-          <InfoCard source="https://via.placeholder.com/150" number={3} name="Pikachu" href="/" bgColorIndex="#B4AAF9" />
+          <InfoCard source={currentPokemon?.pic} number={currentPokemon?.id} name={currentPokemon?.name} bgColorIndex="#B4AAF9" />
         </div>
       </div>
       <footer >
