@@ -41,4 +41,7 @@ section {
     display: grid;
     grid-template-columns: 1fr;
   }
+  .detailContainer{
+    justify-content: center;
+  }
 }
