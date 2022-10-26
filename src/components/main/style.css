@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+ *{
+  font-family: 'Roboto', sans-serif;
+ }
+
+.listCards__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: fit-content;
+}
+.detailContainer{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.main_input {
+  margin: 1rem;
+  width: 52vw;
+  border: 1px solid  lightgray;
+  height: 3rem;
+}
+
+section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media only screen and (max-width: 600px) {
+  .listCards__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: auto;
+  }
+
+  .main_input {
+    margin: 1rem;
+    width: 80vw;
+  }
+
+  section {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
