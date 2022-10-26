@@ -2,7 +2,11 @@
  *{
   font-family: 'Roboto', sans-serif;
  }
-
+.containers{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .listCards__container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -21,8 +25,27 @@
 }
 
 section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin: 1rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+button {
+  border: 1px solid #3B87D9;
+  background: #3B87D9;
+  color: white;
+  border-radius: 5px;
+  padding: 1rem;
+  justify-content: center;
+  width: 200px;
+  cursor: pointer;
+  font-size: larger;
 }
 
 @media only screen and (max-width: 600px) {
@@ -37,11 +60,17 @@ section {
     width: 80vw;
   }
 
-  section {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
   .detailContainer{
     justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  button{
+    width: fit-content;
+  }
+  .containers {
+    display: flex;
+    flex-direction: column
   }
 }

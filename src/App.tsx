@@ -10,7 +10,7 @@ const App = () => {
     <>
       <NavBar />
       <Main usePokemons={usePokemon}  />
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }
