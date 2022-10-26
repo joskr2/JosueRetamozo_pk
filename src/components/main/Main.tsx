@@ -1,19 +1,42 @@
-import Footer from "../footer/Footer"
+import { ChangeEvent, FC, useState } from "react";
+
+import { Pokemon } from "../../interfaces/IFetchAllPokemonResponse";
+import { IMain } from "../../interfaces/IMain";
 import InfoCard from "../molecules/cards/infoCard/InfoCard"
 import ListCard from "../molecules/cards/listCard/ListCard"
+import Loading from "../molecules/loading/Loading";
+import filteredPokemons from "../molecules/pokemons/pokemonResult";
 import "./style.css"
 
-const Main = () => {
+const Main: FC<IMain> = ({ usePokemons}) => {
+
+  const { isLoading, pokemons } = usePokemons();
+  const [currentPage, setCurrentPage] = useState(0)
+  const [search, setSearch] = useState('');
+
+  const onSearchChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
+    setCurrentPage(0);
+    setSearch(target.value);
+  }
+
   return (
     <section>
       <div className="listContainer">
-        <input className="main_input" placeholder="Buscar" />
+        <input className="main_input" placeholder="Buscar" value={search}
+          onChange={onSearchChange} />
         <div className="listCards__container">
-          <ListCard source="https://via.placeholder.com/150" number={3} name="Pikachu" href="/" bgColorIndex="#8FD8CE" />
-          <ListCard source="https://via.placeholder.com/150" number={3} name="Pikachu" href="/" bgColorIndex="#F2C29E" />
-          <ListCard source="https://via.placeholder.com/150" number={3} name="Pikachu" href="/" bgColorIndex="#E9A1AC" />
-          <ListCard source="https://via.placeholder.com/150" number={3} name="Pikachu" href="/" bgColorIndex="#C3D0D9" />
+          {
+            filteredPokemons(search,pokemons,currentPage).map((pokemon:Pokemon) => (
+              <>
+                <ListCard source={`${pokemon.pic}`} number={pokemon.id} name={pokemon.name} href="/" bgColorIndex="#8FD8CE" selectCurrentPokemon={pokemon} />
+              </>
+            ))
+          }
+
         </div>
+        {
+          isLoading && <Loading />
+        }
       </div>
       <div className="detailContainer">
         <InfoCard source="https://via.placeholder.com/150" number={3} name="Pikachu" href="/" bgColorIndex="#B4AAF9" />

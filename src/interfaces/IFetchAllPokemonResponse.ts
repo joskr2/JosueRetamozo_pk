@@ -1,13 +1,13 @@
 export interface FetchAllPokemonResponse {
-  count:    number;
-  next:     null;
+  count: number;
+  next: null;
   previous: null;
-  results:  SmallPokemon[];
+  results: SmallPokemon[];
 }
 
 export interface SmallPokemon {
   name: string;
-  url:  string;
+  url: string;
 }
 
 export interface Pokemon {
